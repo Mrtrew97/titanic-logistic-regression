@@ -130,4 +130,5 @@ A taxa de acerto foi calculada sobre os 179 passageiros do conjunto de teste, qu
   - `fare`
   - `embarked_Q`
   - `embarked_S`
+  
 Estas variáveis não apresentaram evidência estatística suficiente para serem consideradas significativas ao nível de 5% neste modelo.
