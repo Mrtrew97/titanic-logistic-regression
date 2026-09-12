@@ -1,45 +1,58 @@
 # Modelo de Regressão Logística - Titanic
 
-Este repositório contém a resolução do caso prático **"Modelo de Classificação com Regressão Logística"** no âmbito do módulo **Python para Análise de Dados** da **Master.D**.
-
-O objetivo do projeto é construir um pipeline completo em Python para prever a probabilidade de sobrevivência dos passageiros do Titanic com base no dataset `titanic_v2.csv`.
+Modelo de classificação desenvolvido em Python para prever a probabilidade de sobrevivência dos passageiros do Titanic, utilizando tratamento de dados, análise estatística e regressão logística.
 
 ---
 
-## Visão Geral do Projeto
+## 📌 Sobre o Projeto
 
-O projeto aborda todas as etapas fundamentais de ciência de dados e modelação estatística:
+Este projeto foi desenvolvido no âmbito de um caso prático de **Python para Análise de Dados da Master.D** e demonstra a construção de um processo completo de análise e modelação de dados.
 
-- **Carregamento e Exploração**: Leitura do CSV, verificação de caminhos com `pathlib`, estatísticas descritivas com `describe()`, interpretação dos padrões e exploração gráfica independente em Seaborn.
-- **Tratamento e Validação de Nulos**: Imputação por mediana (`age`) e moda (`embarked`), acompanhada por verificação intermédia e final de zero nulos na consola.
-- **Codificação Categórica Padronizada**: Aplicação consistente de `pd.get_dummies()` com `drop_first=True` em todas as variáveis categóricas (`sex` e `embarked`).
-- **Divisão Estratificada de Amostras**: Separação dos dados utilizando `train_test_split()` do `scikit-learn` com `stratify=y` (80% treino / 20% teste) para preservar a proporção real de sobreviventes.
-- **Modelação Estatística**: Treino do modelo de regressão logística binária (`sm.Logit`) com adição de constante exógena.
-- **Avaliação no Conjunto de Teste**: Cálculo de probabilidades, limiar de decisão ($p \ge 0.5$), matriz de confusão e taxa global de acerto.
-- **Geração de Relatório PDF**: Exportação automática de um relatório visual e interpretativo com gráficos criados em Seaborn.
+O programa utiliza o dataset **titanic_v2.csv** e permite:
 
-### Seleção e Justificação de Variáveis
 
-Para garantir a integridade e eficácia do modelo de regressão logística, realizou-se uma seleção criteriosa das variáveis do conjunto de dados `titanic_v2.csv`:
+- Carregar e explorar os dados dos passageiros.
+- Identificar e tratar valores nulos.
+- Preparar e transformar variáveis categóricas.
+- Dividir os dados em conjuntos de treino e teste.
+- Treinar um modelo de regressão logística binária.
+- Prever a probabilidade de sobrevivência dos passageiros.
+- Avaliar o desempenho do modelo através de uma matriz de confusão e da taxa de acerto.
+- Analisar a significância estatística das variáveis utilizadas no modelo.
+- Gerar um relatório PDF com os resultados e gráficos da análise.
+
+---
+
+### 📊 Seleção e Justificação de Variáveis
+
+Para a construção do modelo de regressão logística, foram selecionadas as variáveis consideradas relevantes para a previsão da sobrevivência dos passageiros.
 
 - **Variável Alvo (Target)**:
   - `survived`: Indicador binário de sobrevivência (0 = Não Sobreviveu, 1 = Sobreviveu).
 
-- **Variáveis Mantidas (Preditores)**:
-  - `pclass`, `sex`, `age`, `sibsp`, `parch`, `fare` e `embarked`: Mantidas por representarem características demográficas, socioeconómicas e logísticas relevantes para a previsão da sobrevivência.
+- **Variáveis Preditoras**:
+  - `pclass`: Classe do passageiro.
+  - `sex`: Sexo do passageiro.
+  - `age`: Idade.
+  - `sibsp`: Número de irmãos ou cônjuges a bordo.
+  - `parch`: Número de pais ou filhos a bordo.
+  - `fare`: Tarifa do bilhete.
+  - `embarked`: Porto de embarque.
 
-- **Variáveis Excluídas e Justificação**:
-  - `cabin`: Excluída devido à elevada quantidade de valores nulos (~77,1% / 687 registos em falta), cuja imputação poderia introduzir ruído e distorção no modelo.
-  - `passenger`, `name` e `ticket`: Excluídos por funcionarem essencialmente como identificadores individuais, não apresentando poder preditivo generalizável adequado ao objetivo do modelo.
+- **Variáveis excluídas:**:
+  - `cabin`: Excluída devido à elevada quantidade de valores nulos, correspondentes a aproximadamente 77,1% dos registos (687 valores em falta).
+  - `passenger`, `name` e `ticket`: Excluídas por funcionarem essencialmente como identificadores individuais, não sendo consideradas variáveis com poder preditivo generalizável adequado ao objetivo do modelo.
 
 ---
 
 ## Estrutura do Repositório
 
-- **`modelo_titanic.py`**: Script Python principal contendo todo o código executável.
-- **`titanic_v2.csv`**: Ficheiro de dados com os registos históricos dos passageiros.
-- **`relatorio_titanic.pdf`**: Documento PDF gerado automaticamente com os resultados, explicações pedagógicas e gráficos.
-- **`README.md`**: Documentação principal do projeto.
+- **.gitattributes:** Ficheiro de configuração utilizado pelo Git para definir atributos específicos dos ficheiros do repositório.
+- **modelo_titanic.py: Script Python principal contendo todo o código executável do projeto.
+- **titanic_v2.csv:** Dataset com os registos históricos dos passageiros do Titanic.
+- **relatorio_titanic.pdf:** Relatório PDF gerado automaticamente com os resultados da análise, gráficos e interpretação do modelo.
+- **requirements.txt:** Ficheiro com as bibliotecas Python necessárias para executar o projeto.
+- **README.md:** Documentação principal do projeto.
 
 ---
 
@@ -55,15 +68,16 @@ Para garantir a integridade e eficácia do modelo de regressão logística, real
 - `seaborn`
 - `scikit-learn`
 
-### Comando de Instalação
+### Instalação
 
+Com as dependências definidas no ficheiro requirements.txt, execute:
 ```bash
 python -m pip install -r requirements.txt
 ```
 
 ---
 
-## Como Executar
+## 🚀 Execução
 
 1. Certifique-se de que o ficheiro `titanic_v2.csv` se encontra na mesma pasta do script.
 2. Abra a linha de comandos ou terminal na pasta do projeto.
@@ -75,18 +89,21 @@ python modelo_titanic.py
 
 ---
 
-## Resultados e Avaliação
+## 📊 Resultados e Avaliação
 
 ### Resultados do Modelo
 
-- **Observações no Treino**: 712 passageiros
-- **Observações no Teste**: 179 passageiros
-- **Pseudo R²**: 0.3447 (indicando uma melhoria significativa de ajustamento face ao modelo nulo)
-- **Significância Global (LLR p-value)**: $8.32 \times 10^{-66}$ ($p < 0.001$)
+- **Dados de treino**: 712 passageiros
+- **Dados de teste**: 179 passageiros
+- **Pseudo R²**: 0.3447 
+- **LLR p-value**: 8.32 × 10⁻⁶⁶ (p < 0.001)
+
+O resultado do teste de razão de verosimilhança (LLR) indica que o modelo apresenta significância estatística global.
+
 
 ### Matriz de Confusão
 
-A avaliação do modelo no conjunto de teste (179 novos passageiros) produziu os seguintes resultados:
+A avaliação do modelo no conjunto de teste produziu os seguintes resultados:
 
 - **Verdadeiros Negativos (Mortes Previstas Corretamente)**: 98
 - **Verdadeiros Positivos (Sobrevivências Previstas Corretamente)**: 46
@@ -95,7 +112,10 @@ A avaliação do modelo no conjunto de teste (179 novos passageiros) produziu os
 
 ### Taxa Global de Acerto
 
-- **Acurácia Geral**: **80.45%** nas previsões sobre dados de teste não vistos durante o treino.
+- **Acurácia**: **80.45%** 
+
+A taxa de acerto foi calculada sobre os 179 passageiros do conjunto de teste, que não foram utilizados no treino do modelo.
+
 
 ### Análise Estatística
 
@@ -106,4 +126,8 @@ A avaliação do modelo no conjunto de teste (179 novos passageiros) produziu os
   - `sibsp` ($p = 0.037$, $coef = -0.2531$): O número de irmãos/cônjuges a bordo apresenta associação negativa com a sobrevivência.
 
 - **Variáveis Sem Significância Estatística ($p \ge 0.05$)**:
-  - `parch`, `fare`, `embarked_Q` e `embarked_S` não demonstraram evidência estatística suficiente ao nível de 5% neste conjunto de dados (todos com $p \ge 0.05$).
+  - `parch`
+  - `fare`
+  - `embarked_Q`
+  - `embarked_S`
+Estas variáveis não apresentaram evidência estatística suficiente para serem consideradas significativas ao nível de 5% neste modelo.
